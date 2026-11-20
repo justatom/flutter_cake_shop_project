@@ -30,7 +30,7 @@ class _SplashScreenUiState extends State<SplashScreenUi> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          const AppImage('assets/images/splash_bg.jpg'),
+          const AppImage('assets/images/bg_welcome.png'),
           Align(
             alignment: const Alignment(0, -0.5),
             child: Column(

@@ -25,19 +25,21 @@ class CakeShopListUi extends StatelessWidget {
         children: [
           CarouselSlider(
             options: CarouselOptions(
-              height: 180,
+              height: 200,
               autoPlay: true,
               enlargeCenterPage: true,
-              viewportFraction: 0.8,
+              viewportFraction: 0.6,
             ),
-            items: cakeShops
-                .map(
-                  (shop) => ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: AppImage(shop.image1, width: double.infinity),
-                  ),
-                )
-                .toList(),
+            items: List.generate(
+              7,
+              (i) => ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: AppImage(
+                  'assets/images/ck0${i + 1}.png',
+                  width: double.infinity,
+                ),
+              ),
+            ),
           ),
           const SizedBox(height: 8),
           Expanded(
