@@ -16,37 +16,31 @@ class CakeShopDetailUi extends StatelessWidget {
   Future<void> _open(BuildContext context, Uri uri) async {
     final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
     if (!ok && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('ไม่สามารถเปิด $uri ได้')),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('ไม่สามารถเปิด $uri ได้')));
     }
   }
 
   Widget _section(String title, String body) => Padding(
-        padding: const EdgeInsets.only(bottom: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 2),
-            Text(body, style: const TextStyle(color: Colors.black54)),
-          ],
-        ),
-      );
+    padding: const EdgeInsets.only(bottom: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 2),
+        Text(body, style: const TextStyle(color: Colors.black54)),
+      ],
+    ),
+  );
 
-  Widget _linkTile(
-    BuildContext context,
-    Widget icon,
-    String url,
-  ) =>
-      ListTile(
-        contentPadding: EdgeInsets.zero,
-        dense: true,
-        leading: icon,
-        title: Text(url),
-        trailing: const Icon(Icons.link),
-        onTap: () => _open(context, Uri.parse(url)),
-      );
+  Widget _linkTile(BuildContext context, Widget icon, String url) => ListTile(
+    contentPadding: EdgeInsets.zero,
+    dense: true,
+    leading: icon,
+    title: Text(url),
+    trailing: const Icon(Icons.link),
+    onTap: () => _open(context, Uri.parse(url)),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +89,17 @@ class CakeShopDetailUi extends StatelessWidget {
             _section('ที่อยู่ของร้าน 🚩', cakeShop.address),
             Center(
               child: ElevatedButton.icon(
-                onPressed: () =>
-                    _open(context, Uri(scheme: 'tel', path: cakeShop.phone)),
+                onPressed: () => _open(
+                  context,
+                  Uri(scheme: 'tel', path: cakeShop.phone.trim()),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                   shape: const StadiumBorder(),
                 ),
                 icon: const Icon(Icons.phone, size: 18),
-                label: Text(cakeShop.phone),
+                label: Text(cakeShop.phone.trim()),
               ),
             ),
             const SizedBox(height: 8),

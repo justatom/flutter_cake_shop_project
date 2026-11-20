@@ -47,14 +47,16 @@ class CakeShopListUi extends StatelessWidget {
               itemBuilder: (context, index) {
                 final shop = cakeShops[index];
                 return ListTile(
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 4,
+                  ),
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: AppImage(shop.image1, width: 60, height: 50),
                   ),
                   title: Text(shop.name),
-                  subtitle: Text(shop.phone),
+                  subtitle: Text(shop.phone.trim()),
                   trailing: const FaIcon(
                     FontAwesomeIcons.circleChevronRight,
                     color: Colors.red,
